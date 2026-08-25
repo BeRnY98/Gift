@@ -77,14 +77,23 @@ h1{
 
 .polaroid{
     background:white;
-    padding:10px 10px 20px;
+    padding:10px 10px 25px; /* bordo inferiore più grande */
     width:155px;
     border-radius:8px;
     box-shadow:0 6px 18px rgba(0,0,0,.18);
     transition:.3s;
+    text-align:center; /* centra la scritta */
 }
 
-.polaroid:nth-child(1){
+.caption{
+    margin-top:10px;
+    font-size:0.9rem;
+    color:#555;
+    font-family: 'Georgia', serif;
+}
+
+
+/*.polaroid:nth-child(1){
     transform:rotate(-5deg);
 }
 
@@ -102,7 +111,16 @@ h1{
 
 .polaroid:hover{
     transform:scale(1.08);
+}*/
+/*
+.polaroid:nth-child(odd){
+    transform:rotate(-3deg);
 }
+
+.polaroid:nth-child(even){
+    transform:rotate(5deg);
+}*/
+
 
 .polaroid img{
     width:100%;
@@ -190,26 +208,127 @@ button:hover{
         </div>
 
         <div class="polaroid">
-            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-39.jpg" alt="Foto 2">
+            <img src="foto/foto_2.jpg" alt="Foto 2">
         </div>
 
         <div class="polaroid">
-            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-43.jpg" alt="Foto 3">
+            <img src="foto/foto_3.jpg" alt="Foto 3">
         </div>
 
         <div class="polaroid">
-            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-47.jpg" alt="Foto 4">
+            <img src="foto/foto_4.jpg" alt="Foto 4">
         </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_5.jpg" alt="Foto 5">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_6.jpg" alt="Foto 6">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_7.jpg" alt="Foto 7">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_8.jpg" alt="Foto 8">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_9.jpg" alt="Foto 9">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_10.jpg" alt="Foto 10">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_11.jpg" alt="Foto 11">
+        </div>
+
+<!--        <div class="polaroid">
+            <img src="foto/foto_12.jpg" alt="Foto 12">
+        </div>-->
+
+        <div class="polaroid">
+            <img src="foto/foto_13.jpg" alt="Foto 13">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_14.jpg" alt="Foto 14">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_15.jpg" alt="Foto 15">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_16.jpg" alt="Foto 16">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_17.jpg" alt="Foto 17">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_18.jpg" alt="Foto 18">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_19.jpg" alt="Foto 19">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_20.jpg" alt="Foto 20">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_21.jpg" alt="Foto 21">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_22.jpg" alt="Foto 22">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_23.jpg" alt="Foto 23">
+            <div class="caption">Ale & Berny ❤️</div>
+        </div>
+<!--
+
+        <div class="polaroid">
+            <img src="foto/foto_1.jpg" alt="Foto 24">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_1.jpg" alt="Foto 25">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_1.jpg" alt="Foto 4">
+        </div>
+
+        <div class="polaroid">
+            <img src="foto/foto_1.jpg" alt="Foto 4">
+        </div>
+-->
 
     </div>
 
 </div>
 
-<div class="download-area">
+<!--<div class="download-area">
     <button onclick="window.print()">
         📄 Scarica come PDF
     </button>
-</div>
+</div>-->
 
+<script>
+    document.querySelectorAll('.polaroid').forEach(el => {
+        const angle = (Math.random() * 10) - 5; // da -5° a +5°
+        el.style.transform = `rotate(${angle}deg)`;
+    });
+</script>
 </body>
 </html>
