@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biglietto d'Amore</title>
+
+<style>
+body{
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg,#ffe6ea,#fff5f5);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    padding:30px;
+}
+
+.card{
+    position:relative;
+    background:white;
+    max-width:850px;
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    text-align:center;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"❤";
+    position:absolute;
+    top:15px;
+    left:20px;
+    font-size:2rem;
+    color:rgba(214,51,108,.15);
+}
+
+.card::after{
+    content:"❤";
+    position:absolute;
+    bottom:15px;
+    right:20px;
+    font-size:2rem;
+    color:rgba(214,51,108,.15);
+}
+
+h1{
+    color:#d6336c;
+    font-size:2.5rem;
+    margin-bottom:30px;
+}
+
+.message{
+    font-size:1.15rem;
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+}
+
+.signature{
+    margin-top:40px;
+    color:#d6336c;
+    font-style:italic;
+    font-size:1.3rem;
+}
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:40px;
+    flex-wrap:wrap;
+}
+
+.polaroid{
+    background:white;
+    padding:10px 10px 20px;
+    width:155px;
+    border-radius:8px;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+    transition:.3s;
+}
+
+.polaroid:nth-child(1){
+    transform:rotate(-5deg);
+}
+
+.polaroid:nth-child(2){
+    transform:rotate(3deg);
+}
+
+.polaroid:nth-child(3){
+    transform:rotate(-3deg);
+}
+
+.polaroid:nth-child(4){
+    transform:rotate(5deg);
+}
+
+.polaroid:hover{
+    transform:scale(1.08);
+}
+
+.polaroid img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    border-radius:4px;
+    display:block;
+}
+
+.download-area{
+    margin-top:25px;
+}
+
+button{
+    background:#d6336c;
+    border:none;
+    color:white;
+    padding:14px 28px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+button:hover{
+    background:#bf295d;
+}
+
+@media print{
+
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .download-area{
+        display:none;
+    }
+
+    .card{
+        box-shadow:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>❤️ Per Aleeeee ❤️</h1>
+
+    <div class="message">
+        Amore mio bello, volevo scriverti giusto due paroline, so che è strano scrivertele così però mi piaceva quest'anno l'idea di farti qualcosa di diverso.
+
+        <br><br>
+
+        Piccolina mia inizierei con lo scusarmi se a volte tralascio un po' andare il romanticismo che ci dovrebbe essere nella nostra relazione, però sappi che ogni giorno provo a dimostrare il mio amore per te, e credimi quando ti dico che questo è grandissimo e infinito.
+
+        <br><br>
+
+        Ogni giorno mi fai vivere nuove emozioni e nuovi sentimenti perché sei una persona fantastica e piena di amore, e anche quando sei un po' spenta e non proprio piena di energia riesci a illuminare le mie giornate anche con una semplice frase o un semplice sguardo e sorriso.
+
+        <br><br>
+
+        Non ho parole per descrivere quanto immensa sei e quanto mi rendi felice ogni giorno, e non potrò mai smettere di ringraziare il destino per averci fatto incontrare.
+
+        <br><br>
+
+        Meriti tutto il meglio di questo mondo.
+
+        <br><br>
+
+        Sei l'amore della mia vita e sono sicuro che passeremo altri 1000 compleanni insieme, ma per ora io voglio godermi ogni giorno della mia vita con te, perché sei tu la mia vita.
+    </div>
+
+    <div class="signature">
+        Ti amo all'infinito Pescettina mia ❤️<br>
+        Il tuo Bernaiolo
+    </div>
+
+    <div class="gallery">
+
+        <div class="polaroid">
+            <img src="https://drive.google.com/file/d/1C_sp6uHVqGQ6VgJfD-OjNCPjHaEmyzUS/view?usp=drive_link" alt="Foto 1">
+        </div>
+
+        <div class="polaroid">
+            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-39.jpg" alt="Foto 2">
+        </div>
+
+        <div class="polaroid">
+            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-43.jpg" alt="Foto 3">
+        </div>
+
+        <div class="polaroid">
+            <img src="C:\Users\Berny\Downloads\photo_2026-08-24_15-11-47.jpg" alt="Foto 4">
+        </div>
+
+    </div>
+
+</div>
+
+<div class="download-area">
+    <button onclick="window.print()">
+        📄 Scarica come PDF
+    </button>
+</div>
+
+</body>
+</html>
