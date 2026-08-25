@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Boarding Pass Amore</title>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<style>
+  @page {
+    size: 21.5cm 9cm;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    background: #e8d5f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .ticket {
+    width: 21.5cm;
+    height: 9cm;
+    background: linear-gradient(135deg, #b47cd6 0%, #8e5bc4 50%, #6f42b3 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(111, 66, 179, 0.4);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 20px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .h1 { top: 10px; left: 15px; font-size: 16px; }
+  .h2 { top: 40px; right: 100px; font-size: 22px; transform: rotate(15deg); }
+  .h3 { bottom: 20px; left: 60px; font-size: 18px; transform: rotate(-10deg); }
+  .h4 { top: 100px; left: 200px; font-size: 14px; }
+  .h5 { bottom: 60px; right: 220px; font-size: 20px; transform: rotate(20deg); }
+  .h6 { top: 15px; left: 350px; font-size: 18px; }
+  .h7 { bottom: 15px; left: 400px; font-size: 16px; transform: rotate(-15deg); }
+  .h8 { top: 60px; right: 30px; font-size: 24px; }
+
+  .main-section {
+    flex: 3;
+    padding: 25px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed rgba(255,255,255,0.5);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+
+  .airline-name {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .airline-name::before {
+    content: "✈️";
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+
+  .flight-code {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .route {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+
+  .city-block {
+    text-align: center;
+  }
+
+  .city-name {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .city-code {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 3px;
+  }
+
+  .plane-path {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  .plane-path::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.6) 0px,
+      rgba(255,255,255,0.6) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+
+  .plane-icon {
+    background: linear-gradient(135deg, #b47cd6, #6f42b3);
+    padding: 0 10px;
+    font-size: 22px;
+    z-index: 2;
+    transform: rotate(90deg);
+  }
+
+  .destinations-box {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-top: 15px;
+  }
+
+  .destinations-title {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    opacity: 0.95;
+  }
+
+  .checkbox-list {
+    display: flex;
+    gap: 25px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
+    border-radius: 4px;
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 11px;
+  }
+
+  .info-item {
+    text-align: left;
+  }
+
+  .info-label {
+    opacity: 0.7;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .info-value {
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+    .stub {
+    flex: 1;
+    background: rgba(0,0,0,0.15);
+    border-left: 3px dashed rgba(255,255,255,0.6);
+    padding: 15px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .stub-header {
+    text-align: center;
+  }
+
+  .stub-title {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .stub-plane {
+    font-size: 22px;
+    margin: 5px 0;
+  }
+
+  .passenger-info {
+    text-align: center;
+    margin: 0;
+  }
+
+  .passenger-label {
+    font-size: 8px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+
+  .passenger-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 2px;
+    border-bottom: 1px dotted rgba(255,255,255,0.5);
+    padding-bottom: 3px;
+  }
+
+  .date-box {
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 6px 8px;
+    margin: 0;
+  }
+
+  .date-label {
+    font-size: 8px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+
+  .date-value {
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .love-message {
+    text-align: center;
+    font-size: 9px;
+    font-style: italic;
+    opacity: 0.95;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .qr-container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .qr-placeholder {
+    width: 55px;
+    height: 55px;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  .qr-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .qr-label {
+    text-align: center;
+    font-size: 7px;
+    opacity: 0.8;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Pulsante download - non verrà incluso nell'immagine */
+  .download-btn {
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: #6f42b3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(111, 66, 179, 0.5);
+    transition: transform 0.2s;
+  }
+
+  .download-btn:hover {
+    transform: scale(1.05);
+    background: #5a3591;
+  }
+
+  @media print {
+    .download-btn {
+      display: none;
+    }
+    body {
+      background: white;
+      padding: 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="ticket" id="ticket">
+
+  <span class="heart h1">💜</span>
+  <span class="heart h2">💕</span>
+  <span class="heart h3">💗</span>
+  <span class="heart h4">💜</span>
+  <span class="heart h5">💕</span>
+  <span class="heart h6">💗</span>
+  <span class="heart h7">💜</span>
+  <span class="heart h8">💕</span>
+
+  <div class="main-section">
+    <div class="header">
+      <div>
+        <div class="airline-name">AMORE AIRLINES</div>
+        <div class="subtitle">"Con te ovunque, sempre" 💜</div>
+      </div>
+      <div class="flight-code">VOLO AB-22</div>
+    </div>
+
+    <div class="route">
+      <div class="city-block">
+        <div class="city-name">BARI</div>
+        <div class="city-code">BRI</div>
+      </div>
+
+      <div class="plane-path">
+        <div class="plane-icon">✈️</div>
+      </div>
+
+      <div class="city-block">
+        <div class="city-name">? ? ?</div>
+        <div class="city-code">DA SCEGLIERE</div>
+      </div>
+    </div>
+
+    <div class="destinations-box">
+      <div class="destinations-title">🗺️ SCEGLI LA TUA DESTINAZIONE</div>
+      <div class="checkbox-list">
+        <div class="checkbox-item">
+          <span class="checkbox"></span>
+          <span>Spagna</span>
+        </div>
+        <div class="checkbox-item">
+          <span class="checkbox"></span>
+          <span> Torino</span>
+        </div>
+        <div class="checkbox-item">
+          <span class="checkbox"></span>
+          <span>Londra</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">Classe</div>
+        <div class="info-value">Classe Amore 💜</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Posto</div>
+        <div class="info-value">Vicino a me</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Bagaglio</div>
+        <div class="info-value">Il tuo sorriso e qualche vestitino</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stub">
+    <div class="stub-header">
+      <div class="stub-title">CARTA D'IMBARCO</div>
+      <div class="stub-plane">💜✈️💜</div>
+    </div>
+
+    <div class="passenger-info">
+      <div class="passenger-label">Passeggero</div>
+      <div class="passenger-name">Aleee ♡</div>
+    </div>
+
+    <div class="date-box">
+      <div class="date-label">Data Partenza</div>
+      <div class="date-value">Quando l'amore ci guiderà 💫</div>
+    </div>
+
+    <div class="love-message">
+      Buon Compleanno amore mio!<br>
+      Preparati per un viaggio super... 🎉💜
+    </div>
+
+    <div class="qr-container">
+      <div class="qr-placeholder">
+        <!-- Inserisci qui la tua immagine QR code -->
+         <img src="QR_Biglietto_Amore.png" alt="QR Code"> 
+      </div>
+    </div>
+    <div class="qr-label">Scansiona per un messaggio 💌</div>
+
+  </div>
+
+</div>
+
+<button class="download-btn" onclick="scaricaImmagine()">📥 Scarica come Immagine</button>
+
+<script>
+function scaricaImmagine() {
+  const ticket = document.getElementById('ticket');
+  
+  html2canvas(ticket, {
+    scale: 3, // alta risoluzione per stampa
+    useCORS: true,
+    backgroundColor: null
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'biglietto-aereo-amore.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+</script>
+
+</body>
+</html>
