@@ -88,7 +88,7 @@ h1{
 .polaroid.small img{
     max-width: 100%;
     height: auto;
-    transform: scale(0.90); /* rimpicciolisce la foto senza spostarla */
+    transform: scale(1.05); /* rimpicciolisce la foto senza spostarla */
     transform-origin: center center; /* mantiene la foto centrata */
 }
 
@@ -341,7 +341,7 @@ button:hover{
 
         <div class="polaroid small">
             <img src="foto/foto_0.jpg" alt="Foto 0">
-            <div class="caption">Ora sono 27, ma ne aggiungeremo tanti altri e tante altre esperienze! 🍾🎂</div>
+            <div class="caption">Ora sono 27, ma aggiungeremo tanti altri compleanni e tante altre esperienze! 🍾🎂</div>
         </div>
     </div>
 
@@ -359,5 +359,17 @@ button:hover{
         el.style.transform = `rotate(${angle}deg)`;
     });
 </script>
+<button id="startAudio" style="opacity:0; position:absolute; top:0; left:0; width:100%; height:100%; border:none; background:none;"></button>
+
+<audio id="music" loop>
+    <source src="music/musica.mp3" type="audio/mp3">
+</audio>
+
+<script>
+    document.getElementById("startAudio").addEventListener("click", () => {
+        document.getElementById("music").play();
+    });
+</script>
+
 </body>
 </html>
